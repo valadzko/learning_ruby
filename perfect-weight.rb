@@ -9,12 +9,9 @@ end
 
 loop do
   puts "Please type your height:"
-  height = gets.chomp
-  if (height.to_i.to_s == height || height.to_f.to_s == height) && (height.to_f > 0)
-    break
-  else
-    puts "Error! Your height is not a valid number."
-  end
+  height = gets.to_f
+  break if height > 0
+  puts "Error! Your height is not a valid number."
 end
 
 weight = height.to_f - 110

@@ -3,14 +3,14 @@ puts "Welcome! This script will tell you if your triangle is right."
 def input_value(index)
   loop do
     puts "Please, enter #{index} triangle side lenght"
-    value = gets.chomp
-    return value.to_f if (value.to_f.to_s == value || value.to_i.to_s) && value.to_f > 0
+    value = gets.to_f
+    return value unless value == 0
     puts "Error, triangle side lenght must be a positive number"
   end
 end
 
 sides = []
-%w(first second third).each {|index| sides.push input_value index} 
+3.times { |i| sides << input_value(i+1) } 
 
 #check if triangle is right using Pythagorian theorem
 hypotenuse = sides.max

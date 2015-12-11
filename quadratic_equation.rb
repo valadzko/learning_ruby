@@ -3,8 +3,8 @@ puts "Welcome! This script will solve quadratic equation."
 def input_value(var_name)
   loop do
     puts "Please, enter coefficient  #{var_name}"
-    value = gets.chomp
-    return value.to_f if value.to_f.to_s == value || value.to_i.to_s == value 
+    value = gets.to_f
+    return value unless value == 0
     puts "Error, #{var_name} must be a number"
   end
 end
