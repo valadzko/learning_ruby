@@ -1,12 +1,12 @@
 class Route
   attr_accessor :stations
 
-  def initialize
-    @stations = []
+  def initialize(first_station, last_station)
+    @stations = [first_station, last_station]
   end
 
-  def add_station(station)
-    @stations << station
+  def add_station(station, index)
+    @stations.insert(index - 1, station)
   end
 
   def add_first_station(station)
@@ -14,15 +14,15 @@ class Route
   end
 
   def remove_station(station)
-    stations.each
+    @stations.delete(station)
   end
 
   def first_station
-    @stations[0]
+    @stations.first
   end
 
   def last_station
-    @stations[-1]
+    @stations.last
   end
 
   def intermediate_stations

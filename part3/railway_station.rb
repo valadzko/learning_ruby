@@ -12,12 +12,7 @@ class RailwayStation
   end
 
   def send_train(train_to_send)
-    @trains.each do |train|
-      if train.id == train_to_send.id
-        puts "Train #{train.id} has been sent"
-        @trains.delete(train)
-      end
-    end
+    puts "Train #{train_to send} has been sent" if @trains.delete(train_to_send)
   end
 
   def show_trains
@@ -29,19 +24,20 @@ class RailwayStation
   end
 
   def show_freight_trains
-    if @trains.any?
-      @trains.each do |train|
-        next unless train.type == "freight"
-        puts "Freight train at the station #{@name} : #{train.id}"
-      end
-    end
+    show_trains_by_type("freight")
   end
 
   def show_passenger_trains
+    show_trains_by_type("passenger")
+  end
+
+  private
+
+  def show_trains_by_type(type)
     if @trains.any?
       @trains.each do |train|
-        next unless train.type == "passenger"
-        puts "Passenger train at the station #{@name} : #{train.id}"
+        next unless train.type == type
+        puts "Freight train at the station #{@name} : #{train.id}"
       end
     end
   end

@@ -2,14 +2,14 @@ class Train
   attr_reader :speed, :id
   attr_accessor :wagons_number, :type
 
-  def initialize (type, wagons_number, id)
+  def initialize(type, wagons_number, id)
     @type = type
     @id = id
     @wagons_number = wagons_number
     @speed = 0
   end
 
-  def increase_speed (amount = 10)
+  def increase_speed(amount = 10)
     @speed += amount
   end
 
@@ -28,14 +28,18 @@ class Train
 
   def detach_wagon
     if @speed == 0
-      @wagons_number -= 1
-      puts "Wagon has been detached"
+      if @wagons_number >= 1
+        @wagons_number -= 1
+        puts "Wagon has been detached"
+      else
+        puts "There are no wagons to detach!"
+      end
     else
       puts "Train is moving, failed to detach wagon."
     end
   end
 
-  def accept_route (route)
+  def accept_route(route)
     @route = route
     @current_station = @route.first_station
   end
