@@ -52,8 +52,7 @@ class RailwayStation
   def show_trains_by_type(type)
     if @trains.any?
       @trains.each do |train|
-        next unless train.type == type
-        puts "Freight train at the station #{@name} : #{train.id}"
+        puts "Freight train at the station #{@name} : #{train.id}" if train.type == type
       end
     end
   end

@@ -55,7 +55,7 @@ class Train
     end
   end
 
-  private
+  protected
   # denied to use parent class for object instances
   def initialize(id, type)
     @id = id
