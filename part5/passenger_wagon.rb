@@ -1,5 +1,5 @@
-class PassengerWagon < Wagon
-  include Manufacturer
+class PassengerWagon < Wagon  
+  include InstanceCounter
 
   @@wagons = []
 

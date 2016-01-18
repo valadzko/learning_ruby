@@ -3,11 +3,10 @@ class Train
   attr_reader :speed, :id, :type
   attr_accessor :wagons
 
-  @@trains = []
+  @@trains = {}
 
   def self.find(id)
-    @@trains.each { |train| return train if train.id == id }
-    nil
+    @@trains[id].inspect
   end
 
   def increase_speed(amount = 10)
@@ -41,7 +40,7 @@ class Train
 
   def prev_station
     @route.stations.each_with_index do |station, index|
-      return = @route.stations[index - 1] if station.name == @current_station.name
+      @route.stations[index - 1] if station.name == @current_station.name
     end
   end
 
@@ -51,7 +50,7 @@ class Train
 
   def next_station
     @route.stations.each_with_index do |station, index|
-      return = @route.stations[index + 1] if station.name == @current_station.name
+      @route.stations[index + 1] if station.name == @current_station.name
     end
   end
 
@@ -62,7 +61,7 @@ class Train
     @wagons = []
     @speed = 0
     @type = type
-    @@trains << self
+    @@trains[id] = self
   end
 
   # the purpose of these methods is to remove these checks from child classes,

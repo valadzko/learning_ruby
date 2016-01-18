@@ -1,20 +1,20 @@
 class RailwayStation
   attr_reader :name
 
-  @@stations = []
+  @@stations = {}
 
-  def self.print_all_stations
+  def self.all
     if @@stations.empty?
       puts "There are no created stations yet!"
     else
-      @@stations.each { |station| puts "#{station}" }
+      @@stations.each_key { |name| puts "Station : #{name}" }
     end
   end
 
   def initialize(name)
     @name = name
     @trains = []
-    @@stations << self
+    @@stations[name] = self
   end
 
   def accept_train(train)
