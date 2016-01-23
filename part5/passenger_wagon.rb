@@ -1,5 +1,4 @@
 class PassengerWagon < Wagon  
-  include InstanceCounter
 
   @@wagons = []
 

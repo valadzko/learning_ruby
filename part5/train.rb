@@ -5,6 +5,15 @@ class Train
 
   @@trains = {}
 
+  # denied to use parent class for object instances
+  def initialize(id, type)
+    @id = id
+    @wagons = []
+    @speed = 0
+    @type = type
+    @@trains[id] = self
+  end
+
   def self.find(id)
     @@trains[id].inspect
   end
@@ -55,14 +64,6 @@ class Train
   end
 
   protected
-  # denied to use parent class for object instances
-  def initialize(id, type)
-    @id = id
-    @wagons = []
-    @speed = 0
-    @type = type
-    @@trains[id] = self
-  end
 
   # the purpose of these methods is to remove these checks from child classes,
   # so we should not be able to execute these methods on Train class directly

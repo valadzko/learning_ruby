@@ -4,11 +4,7 @@ class RailwayStation
   @@stations = {}
 
   def self.all
-    if @@stations.empty?
-      puts "There are no created stations yet!"
-    else
-      @@stations.each_key { |name| puts "Station : #{name}" }
-    end
+    @@stations
   end
 
   def initialize(name)
