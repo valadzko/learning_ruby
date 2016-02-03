@@ -5,7 +5,7 @@ class Train
 
   @@trains = {}
 
-  # english support only 
+  # english support only
   ID_FORMAT = /^[a-zA-Z0-9]{3}-?[a-zA-Z0-9]{2}$/i
 
   # denied to use parent class for object instances
@@ -14,8 +14,8 @@ class Train
     @wagons = []
     @speed = 0
     @type = type
-    @@trains[id] = self
     validate!
+    @@trains[id] = self
   end
 
   def valid?

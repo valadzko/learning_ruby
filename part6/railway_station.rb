@@ -10,8 +10,8 @@ class RailwayStation
   def initialize(name)
     @name = name
     @trains = []
-    @@stations[name] = self
     validate!
+    @@stations[name] = self
   end
 
   def valid?
