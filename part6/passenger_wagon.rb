@@ -1,10 +1,33 @@
-class PassengerWagon < Wagon  
+class PassengerWagon < Wagon
 
   @@wagons = []
 
-  def initialize(name)
-    @name = name
+  def initialize(id, seats_number)
+    super(id)
+    @seats_number = seats_number
+    @taken_seats_number = 0
     @@wagons << self
+  end
+
+  def type
+    "passenger"
+  end
+
+  # bad naming
+  def take_seat
+    if @taken_seats_number + 1 <= @seats_number
+      @taken_seats_number += 1
+    else
+      raise "All seats are taken!"
+    end
+  end
+
+  def taken_seats
+    @taken_seats_number
+  end
+
+  def available_seats
+    @seats_number - taken_seats
   end
 
   def self.print_all_wagons
@@ -16,7 +39,7 @@ class PassengerWagon < Wagon
   end
 
   def to_s
-    "Wagon name is #{@name}"
+    "Wagon name is #{@id}"
   end
 
 end

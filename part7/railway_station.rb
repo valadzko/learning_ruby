@@ -7,6 +7,26 @@ class RailwayStation
     @@stations
   end
 
+  def each_train
+    @trains.each { |train| yield train }
+  end
+
+  def self.show_trains_for_stations
+    @@station.each |station| do
+      station.each_train |t| do
+        puts "Train id = #{t.id}, type = #{t.type}, wagons = #{t.wagons}"}
+        t.each_wagon |w| do
+          puts "Wagon id: #{w.id}, type: #{w.type}"
+          if w.type == "cargo"
+            puts "Available volume: #{w.available_volume}, taken volume: #{w.taken_volume}"
+          elsif w.type == "passenger"
+            puts "Available seats: #{w.available_seats}, taken seats: #{w.taken_seats}"
+          end
+        end
+      end
+    end
+  end
+
   def initialize(name)
     @name = name
     @trains = []

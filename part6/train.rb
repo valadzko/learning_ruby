@@ -18,6 +18,10 @@ class Train
     @@trains[id] = self
   end
 
+  def each_wagon
+    @wagon.each { |wagon| yield wagon }
+  end
+
   def valid?
     validate!
   rescue
