@@ -1,7 +1,6 @@
 class CargoTrain < Train
-
   def initialize(id)
-    super(id, "cargo")
+    super(id, 'cargo')
   end
 
   def attache_wagon
@@ -13,5 +12,4 @@ class CargoTrain < Train
     super
     @wagons.shift
   end
-
 end

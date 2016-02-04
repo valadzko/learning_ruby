@@ -12,15 +12,17 @@ class RailwayStation
   end
 
   def self.show_trains_for_stations
-    @@station.each |station| do
-      station.each_train |t| do
-        puts "Train id = #{t.id}, type = #{t.type}, wagons = #{t.wagons}"}
-        t.each_wagon |w| do
+    @@station.each do |station|
+      station.each_train do |t|
+        puts "Train id = #{t.id}, type = #{t.type}, wagons = #{t.wagons}"
+        t.each_wagon do |w|
           puts "Wagon id: #{w.id}, type: #{w.type}"
-          if w.type == "cargo"
-            puts "Available volume: #{w.available_volume}, taken volume: #{w.taken_volume}"
-          elsif w.type == "passenger"
-            puts "Available seats: #{w.available_seats}, taken seats: #{w.taken_seats}"
+          if w.type == 'cargo'
+            puts "Available volume: #{w.available_volume},\
+             taken volume: #{w.taken_volume}"
+          elsif w.type == 'passenger'
+            puts "Available seats: #{w.available_seats}, \
+            taken seats: #{w.taken_seats}"
           end
         end
       end
@@ -50,7 +52,7 @@ class RailwayStation
 
   def show_trains
     if @trains.any?
-      @trains.each { |train| puts "Train at the station #{@name}: #{train.id} "}
+      @trains.each { |train| puts "Train at #{@name}: #{train.id} " }
     else
       puts "The are no trains at the #{@name} station at the moment"
     end
@@ -61,18 +63,18 @@ class RailwayStation
   end
 
   def show_freight_trains
-    show_trains_by_type("freight")
+    show_trains_by_type('freight')
   end
 
   def show_passenger_trains
-    show_trains_by_type("passenger")
+    show_trains_by_type('passenger')
   end
 
   private
 
   def validate!
-    raise "Station name is not defined" if @name.nil?
-    raise "Station name length can not be less than 3 letter!" if @name.lenght < 3
+    raise 'Station name is not defined' if @name.nil?
+    raise 'Station name length cant be less than 3 letter!' if @name.lenght < 3
     true
   end
 
@@ -80,9 +82,8 @@ class RailwayStation
   def show_trains_by_type(type)
     if @trains.any?
       @trains.each do |train|
-        puts "Freight train at the station #{@name} : #{train.id}" if train.type == type
+        puts "Freight train at #{@name} : #{train.id}" if train.type == type
       end
     end
   end
-
 end

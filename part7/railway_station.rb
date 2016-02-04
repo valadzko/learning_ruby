@@ -12,10 +12,10 @@ class RailwayStation
   end
 
   def self.show_trains_for_stations
-    @@station.each |station| do
-      station.each_train |t| do
-        puts "Train id = #{t.id}, type = #{t.type}, wagons = #{t.wagons}"}
-        t.each_wagon |w| do
+    @@station.each do |station|
+      station.each_train do |t|
+        puts "Train id = #{t.id}, type = #{t.type}, wagons = #{t.wagons}"
+        t.each_wagon do |w|
           puts "Wagon id: #{w.id}, type: #{w.type}"
           if w.type == "cargo"
             puts "Available volume: #{w.available_volume}, taken volume: #{w.taken_volume}"

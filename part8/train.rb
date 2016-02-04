@@ -41,7 +41,7 @@ class Train
   end
 
   def accept_route(route)
-    raise "Route is not valid" unless route.valid?
+    raise 'Route is not valid' unless route.valid?
     @route = route
     @current_station = @route.first_station
   end
@@ -67,9 +67,7 @@ class Train
     end
   end
 
-  def current_station
-    @current_station
-  end
+  attr_reader :current_station
 
   def next_station
     @route.stations.each_with_index do |station, index|
@@ -80,18 +78,18 @@ class Train
   protected
 
   def validate!
-    raise "Train ID must have this format: 3 letters/numbers, dash (not required), 2 letters/numbers" unless id =~ ID_FORMAT
-    raise "Unknown train type" unless type == "passenger" || type == "cargo"
+    raise 'Train ID must have this format: 3 letters/numbers, \
+    dash (not required), 2 letters/numbers' unless id =~ ID_FORMAT
+    raise 'Unknown train type' unless type == 'passenger' || type == 'cargo'
     true
   end
 
   def attache_wagon
-    raise "Failed to attache wagon. Train is in motion" if @speed.zero?
+    raise 'Failed to attache wagon. Train is in motion' if @speed.zero?
   end
 
   def detach_wagon
-    raise "Failed to dettach wagon. Train is in motion" if @speed.zero?
-    raise "All wagons has been detached already" if @wagons.empty?
+    raise 'Failed to dettach wagon. Train is in motion' if @speed.zero?
+    raise 'All wagons has been detached already' if @wagons.empty?
   end
-
 end

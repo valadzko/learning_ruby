@@ -3,10 +3,9 @@ class Wagon
   attr_reader id
 
   def initialize(id)
-   @id = id
+    @id = id
   end
 
   def type
   end
-
 end

@@ -33,21 +33,20 @@ class Route
   end
 
   def intermediate_stations
-    @stations[1,-2]
+    @stations[1, -2]
   end
 
   def show_route
-    route_stations = ""
-    @stations.each {|station| route_stations += " #{station.name} "}
+    route_stations = ''
+    @stations.each { |station| route_stations += " #{station.name} " }
     puts  "All stations in the route: #{route_stations}"
   end
 
   protected
 
   def validate!
-    raise "Route must have at least two valid stations" if @stations.length < 2
-    @station.each { |station| station.valid? }
+    raise 'Route must have at least two valid stations' if @stations.length < 2
+    @station.each(&:valid?)
     true
   end
-
 end

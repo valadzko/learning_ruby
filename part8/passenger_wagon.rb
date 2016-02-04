@@ -1,5 +1,4 @@
 class PassengerWagon < Wagon
-
   @@wagons = []
 
   def initialize(id, seats_number)
@@ -10,16 +9,13 @@ class PassengerWagon < Wagon
   end
 
   def type
-    "passenger"
+    'passenger'
   end
 
   # bad naming
   def take_seat
-    if @taken_seats_number + 1 <= @seats_number
-      @taken_seats_number += 1
-    else
-      raise "All seats are taken!"
-    end
+    raise 'All seats are taken!' unless @taken_seats_number + 1 <= @seats_number
+    @taken_seats_number += 1
   end
 
   def taken_seats
@@ -32,7 +28,7 @@ class PassengerWagon < Wagon
 
   def self.print_all_wagons
     if @@wagons.empty?
-      puts "There are no wagons"
+      puts 'There are no wagons'
     else
       @@wagons.each { |w| puts "Hey, your wagon is : #{w}" }
     end
@@ -41,5 +37,4 @@ class PassengerWagon < Wagon
   def to_s
     "Wagon name is #{@id}"
   end
-
 end
