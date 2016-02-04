@@ -3,7 +3,7 @@ class Train
   attr_reader :speed, :id, :type
   attr_accessor :wagons
 
-  @@trains = {}
+  self.class.trains ||= {}
 
   # english support only
   ID_FORMAT = /^[a-zA-Z0-9]{3}-?[a-zA-Z0-9]{2}$/i

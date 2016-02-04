@@ -1,10 +1,10 @@
 class RailwayStation
   attr_reader :name
 
-  @@stations = {}
+  self.class.stations |= {}
 
   def self.all
-    @@stations
+    self.class.stations
   end
 
   def each_train

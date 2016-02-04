@@ -1,5 +1,5 @@
 class PassengerWagon < Wagon
-  @@wagons = []
+  self.class.wagons ||= []
 
   def initialize(id, seats_number)
     super(id)
