@@ -1,5 +1,7 @@
+require './validation.rb'
+
 class Train
-  include Manufacturer
+  include Manufacturer, Validation
   attr_reader :speed, :id, :type
   attr_accessor :wagons
 
@@ -7,6 +9,10 @@ class Train
 
   # english support only
   ID_FORMAT = /^[a-zA-Z0-9]{3}-?[a-zA-Z0-9]{2}$/i
+
+  validate :id, :format, ID_FORMAT
+  #first type is a local field name, second - param from Validation module
+  validate :type, :type, Train
 
   # denied to use parent class for object instances
   def initialize(id, type)
@@ -20,12 +26,6 @@ class Train
 
   def each_wagon
     @wagon.each { |wagon| yield wagon }
-  end
-
-  def valid?
-    validate!
-  rescue
-    false
   end
 
   def self.find(id)
@@ -76,13 +76,6 @@ class Train
   end
 
   protected
-
-  def validate!
-    raise 'Train ID must have this format: 3 letters/numbers, \
-    dash (not required), 2 letters/numbers' unless id =~ ID_FORMAT
-    raise 'Unknown train type' unless type == 'passenger' || type == 'cargo'
-    true
-  end
 
   def attache_wagon
     raise 'Failed to attache wagon. Train is in motion' if @speed.zero?

@@ -1,15 +1,13 @@
+require './validation.rb'
+
 class Route
+  include Validation
   attr_accessor :stations
+  validate :stations, :type, RailwayStation
 
   def initialize(first_station, last_station)
     @stations = [first_station, last_station]
     validate!
-  end
-
-  def valid?
-    validate!
-  rescue
-    false
   end
 
   def add_station(station, index)

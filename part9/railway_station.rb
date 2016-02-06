@@ -1,5 +1,9 @@
+require './validation.rb'
+
 class RailwayStation
+  include Validation
   attr_reader :name
+  validate :name, :presence
 
   self.class.stations |= {}
 
@@ -36,12 +40,6 @@ class RailwayStation
     @@stations[name] = self
   end
 
-  def valid?
-    validate!
-  rescue
-    false
-  end
-
   def accept_train(train)
     @trains << train if train.valid?
   end
@@ -71,12 +69,6 @@ class RailwayStation
   end
 
   private
-
-  def validate!
-    raise 'Station name is not defined' if @name.nil?
-    raise 'Station name length cant be less than 3 letter!' if @name.lenght < 3
-    true
-  end
 
   # private, because it is used only for internal purposes of the class Train
   def show_trains_by_type(type)
