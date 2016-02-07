@@ -6,10 +6,15 @@ module Validation
   end
 
   module InstanceMethods
+
     def validate!
-      to_validate = []
-      self.methods.each {|m| to_validate << m if m.to_s.start_with?("validation_field_")}
-      to_validate.each {|validation| self.send(validation)}
+      validations = instance_variable_get("@validations".to_sym)
+      validations.each do |v|
+        params = {}
+        params[:field] = instance_variable_get("@#{v[:field]}".to_sym)
+        params[:option] = v[:option] if v[:option]
+        self.send("validate_#{v[:type]}", params)
+      end
       true
     end
 
@@ -19,26 +24,31 @@ module Validation
       false
     end
 
+    def validate_type(params)
+      raise "TypeDoesNotMatch" unless params[:field].is_a?(params[:option])
+    end
+
+    def validate_format(params)
+      raise "FailedFormatField" unless params[:field].class =~ params[:option]
+    end
+
+    def validate_presence(params)
+      raise "FailedValidatePresenceField" if params[:field].nil? || params[:field].empty?
+    end
+
   end
 
   module ClassMethods
-    def validate (field, *args)
 
-      case args[0].to_sym
-      when :type
-        define_method("validation_field_#{field}".to_sym) do
-          raise "TypeDoesNotMatch" unless "@#{field}".is_a?("#{args[1]})
-        end
-      when :format
-        define_method("validation_field_#{field}".to_sym) do
-          raise "FailedFormatField" unless "@#{field.class}" =~ "#{args[1]}"
-        end
-      when :presence
-        define_method("validation_field_#{field}".to_sym) do
-          raise "FailedValidatePresenceField" if "@#{field}".nil? || "@#{field}".empty?
-        end
-      end # case-when
-    end # validate
-  end # ClassMethods
+    def validate(field, *args)
+      validations = instance_variable_get("@validations".to_sym)
+      validations ||= []
+      new_validation = {field: field, type: args[0]}
+      new_validation[:option] = args[1] unless args[1].nil?
+      validations << new_validation
+      instance_variable_set("@validations".to_sym, validations)
+    end
+
+  end
 
 end
