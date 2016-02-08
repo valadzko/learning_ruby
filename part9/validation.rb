@@ -8,7 +8,7 @@ module Validation
   module InstanceMethods
 
     def validate!
-      validations = class_variable_get("@@validations".to_sym)
+      validations = class_variable_get(:@@validations)
       validations.each do |v|
         params = {}
         params[:field] = instance_variable_get("@#{v[:field]}".to_sym)
@@ -41,12 +41,10 @@ module Validation
   module ClassMethods
 
     def validate(field, *args)
-      validations = class_variable_get("@@validations".to_sym)
+      validations = class_variable_get(:@@validations)
       validations ||= []
-      new_validation = {field: field, type: args[0]}
-      new_validation[:option] = args[1] unless args[1].nil?
-      validations << new_validation
-      class_variable_set("@@validations".to_sym, validations)
+      validations << {field: field, type: args[0], option: args[1]}
+      class_variable_set(:@@validations, validations)
     end
 
   end
