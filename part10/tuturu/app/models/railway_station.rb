@@ -1,3 +1,3 @@
 class RailwayStation < ActiveRecord::Base
-  has_many :Routes
+  has_many :routes
 end

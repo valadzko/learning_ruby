@@ -1,4 +1,4 @@
 class Train < ActiveRecord::Base
-  has_one :Route
-  has_many :Tickets
+  belongs_to :route
+  has_many :tickets
 end
