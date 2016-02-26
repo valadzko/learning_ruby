@@ -17,6 +17,12 @@
     <%= f.label :class_type %><br>
     <%= f.text_field :class_type %>
   </div>
+
+  <div class="field">
+    <%= f.label :train, "Train number:" %><br>
+    <%= f.collection_select :train_id, Train.all, :id, :number %>
+  </div>
+
   <div class="actions">
     <%= f.submit 'Edit' %>
   </div>
