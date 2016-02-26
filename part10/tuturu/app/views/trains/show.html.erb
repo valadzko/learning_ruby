@@ -14,5 +14,57 @@
   <% end %>
 </p>
 
+<p>
+  <strong> Wagons: </strong>
+  <% unless @train.wagons.any? %>
+    there are no wagons and seats!
+  <% else %>
+    First class wagons:
+    <% @first_class_wagons = Wagon.where(train: @train, class_type: :first_class) %>
+    <% if @first_class_wagons.any? %>
+      <%= @first_class_wagons.size %>
+    <% else %>
+    0
+    <% end %>
+    Econom class wagons:
+    <% @econom_class_wagons = Wagon.where(train: @train, class_type: :econom_class) %>
+    <% if @econom_class_wagons.any? %>
+      <%= @econom_class_wagons.size %>
+    <% else %>
+    0
+    <% end %>
+
+    <p>
+      <strong> Seats: </strong>
+      <p>First class:</p>
+      <% @number = 0 %>
+      <% @first_class_wagons.each do |w| %>
+        <% @number += Seat.where(wagon: w, seat_type: :top).size if w.seats.any? %>
+      <% end %>
+      top seats:
+      <%= @number %>
+      <% @number = 0 %>
+      <% @first_class_wagons.each do |w| %>
+        <% @number += Seat.where(wagon: w, seat_type: :bottom).size if w.seats.any? %>
+      <% end %>
+      bottom seats:
+      <%= @number %>
+      <p>Econom class:</p>
+      <% @number = 0 %>
+      <% @econom_class_wagons.each do |w| %>
+        <% @number += Seat.where(wagon: w, seat_type: :top).size if w.seats.any? %>
+      <% end %>
+      top seats:
+      <%= @number %>
+      <% @number = 0 %>
+      <% @econom_class_wagons.each do |w| %>
+        <% @number += Seat.where(wagon: w, seat_type: :bottom).size if w.seats.any? %>
+      <% end %>
+      bottom seats:
+      <%= @number %>
+    </p>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>
