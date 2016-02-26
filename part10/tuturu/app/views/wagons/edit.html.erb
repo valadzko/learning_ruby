@@ -1,0 +1,28 @@
+<h1>Edit Wagon</h1>
+
+<%= form_for(@wagon) do |f| %>
+  <% if @wagon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@wagon.errors.count, "error") %> prohibited this wagon from being saved:</h2>
+
+      <ul>
+      <% @wagon.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :class_type %><br>
+    <%= f.text_field :class_type %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Edit' %>
+  </div>
+<% end %>
+
+
+
+<%= link_to 'Show', @wagon %> |
+<%= link_to 'Back', wagons_path %>
