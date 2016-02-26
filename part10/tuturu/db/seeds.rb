@@ -28,6 +28,41 @@ ticket1 = Ticket.new(user: user1, train: tr3, first_station: rs2, last_station: 
 ticket2 = Ticket.new(user: user2, train: tr1, first_station: rs1, last_station: rs2)
 ticket3 = Ticket.new(user: user3, train: tr1, first_station: rs3, last_station: rs2)
 ticket4 = Ticket.new(user: user1, train: tr1, first_station: rs1, last_station: rs2)
+#wagons and seats for tr1
+(1..7).each do |wagon_index|
+  class_type = wagon_index < 5 ? :econom_class : :first_class
+  wagon = Wagon.new(class_type: class_type, train: tr1)
+  (1..25).each do |seat_index|
+    seat_type = seat_index % 2 == 0 ? :top : :bottom
+    seat = Seat.new(seat_number: seat_index.to_s, seat_type: seat_type)
+    seat.wagon = wagon
+    seat.save!
+  end
+  wagon.save!
+end
+#wagons and seats for tr2
+(1..4).each do |wagon_index|
+  class_type = wagon_index < 3 ? :econom_class : :first_class
+  wagon = Wagon.new(class_type: class_type, train: tr2)
+  (1..20).each do |seat_index|
+    seat_type = seat_index % 2 == 0 ? :top : :bottom
+    seat = Seat.new(seat_number: seat_index.to_s, seat_type: seat_type)
+    seat.wagon = wagon
+    seat.save!
+  end
+  wagon.save!
+end
+#wagons and seats for tr3 (only first class wagon, only bottom seats, best for Paris)
+(1..5).each do |wagon_index|
+  wagon = Wagon.new(class_type: :first_class, train: tr3)
+  (1..20).each do |seat_index|
+    seat = Seat.new(seat_number: seat_index.to_i, seat_type: :bottom)
+    seat.wagon = wagon
+    seat.save!
+  end
+  wagon.save!
+end
+
 # associations
 tr1.route = r1
 tr2.route = r1
