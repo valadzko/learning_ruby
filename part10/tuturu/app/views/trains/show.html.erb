@@ -20,14 +20,14 @@
     there are no wagons and seats!
   <% else %>
     First class wagons:
-    <% @first_class_wagons = Wagon.where(train: @train, class_type: :first_class) %>
+    <% @first_class_wagons = @train.wagons_by_type(:first_class) %>
     <% if @first_class_wagons.any? %>
       <%= @first_class_wagons.size %>
     <% else %>
     0
     <% end %>
     Econom class wagons:
-    <% @econom_class_wagons = Wagon.where(train: @train, class_type: :econom_class) %>
+    <% @econom_class_wagons = @train.wagons_by_type(:econom_class) %>
     <% if @econom_class_wagons.any? %>
       <%= @econom_class_wagons.size %>
     <% else %>
@@ -37,31 +37,15 @@
     <p>
       <strong> Seats: </strong>
       <p>First class:</p>
-      <% @number = 0 %>
-      <% @first_class_wagons.each do |w| %>
-        <% @number += Seat.where(wagon: w, seat_type: :top).size if w.seats.any? %>
-      <% end %>
       top seats:
-      <%= @number %>
-      <% @number = 0 %>
-      <% @first_class_wagons.each do |w| %>
-        <% @number += Seat.where(wagon: w, seat_type: :bottom).size if w.seats.any? %>
-      <% end %>
+      <%= @train.total_seats_number_by_wagon_type_and_seat_type(:first_class, :top_seats) %>
       bottom seats:
-      <%= @number %>
+      <%= @train.total_seats_number_by_wagon_type_and_seat_type(:first_class, :bottom_seats) %>
       <p>Econom class:</p>
-      <% @number = 0 %>
-      <% @econom_class_wagons.each do |w| %>
-        <% @number += Seat.where(wagon: w, seat_type: :top).size if w.seats.any? %>
-      <% end %>
       top seats:
-      <%= @number %>
-      <% @number = 0 %>
-      <% @econom_class_wagons.each do |w| %>
-        <% @number += Seat.where(wagon: w, seat_type: :bottom).size if w.seats.any? %>
-      <% end %>
+      <%= @train.total_seats_number_by_wagon_type_and_seat_type(:econom_class, :top_seats) %>
       bottom seats:
-      <%= @number %>
+      <%= @train.total_seats_number_by_wagon_type_and_seat_type(:econom_class, :bottom_seats) %>
     </p>
   <% end %>
 </p>

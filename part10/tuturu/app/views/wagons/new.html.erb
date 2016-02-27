@@ -25,12 +25,12 @@
 
   <div class="field">
     <%= f.label "Top seats number" %><br>
-    <%= number_field_tag 'top_seats', 4, in: 0...50 %>
+    <%= f.number_field 'top_seats', min: 0, max: 50 %>
   </div>
 
   <div class="field">
     <%= f.label "Bottom seats number" %><br>
-    <%= number_field_tag 'bottom_seats', 4, in: 0...50 %>
+    <%= f.number_field 'bottom_seats' , min: 0, max: 50%>
   </div>
 
   <div class="actions">
