@@ -1,0 +1,44 @@
+<h1>Edit Ticket</h1>
+
+<%= form_for(@ticket) do |f| %>
+  <% if @ticket.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+
+      <ul>
+      <% @ticket.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :train_id, "Train:" %><br>
+    <%= f.collection_select :train_id, Train.all, :id, :number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_station_id, "First station:" %><br>
+    <%= f.collection_select :first_station_id, RailwayStation.all, :id, :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_station_id, "First station:" %><br>
+    <%= f.collection_select :last_station_id, RailwayStation.all, :id, :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Edit' %>
+  </div>
+<% end %>
+
+
+
+<%= link_to 'Show', @ticket %> |
+<%= link_to 'Back', tickets_path %>
