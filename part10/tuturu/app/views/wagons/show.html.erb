@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @wagon.class_type %>
+</p>
+
+<p>
+  <strong> Train: </strong>
+  <% if @wagon.train.present? %>
+    <%= @wagon.train.number %>
+  <% else %>
+    Oops, the wagon without a train!
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_wagon_path(@wagon) %> |
+<%= link_to 'Back', wagons_path %>

@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   resources :trains
   resources :railway_stations
   resources :routes
+<<<<<<< HEAD
   resources :tickets
+=======
+  resources :wagons
+>>>>>>> FETCH_HEAD
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
