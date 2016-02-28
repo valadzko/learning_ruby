@@ -33,6 +33,9 @@ end
 (1..5).each {|x| Wagon.create(class_type: :first_class, train: tr3, bottom_seats: '50')}
 
 # associations
+r1.railway_stations = [rs1, rs3, rs2]
+r2.railway_stations = [rs2, rs4]
+
 tr1.route = r1
 tr2.route = r1
 tr3.route = r2

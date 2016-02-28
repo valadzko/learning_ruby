@@ -16,5 +16,19 @@
   <% end %>
 </p>
 
+<p>
+  <strong> Route stations: </strong>
+  <% unless @route.railway_stations.empty? %>
+    <% @route.railway_stations.each do |st| %>
+    <ul>
+      <%= st.title %>
+    </ul>
+    <% end %>
+  <% else %>
+    No stations yet!
+  <% end %>
+</p>
+
+
 <%= link_to 'Edit', edit_route_path(@route) %> |
 <%= link_to 'Back', routes_path %>
