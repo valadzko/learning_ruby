@@ -5,5 +5,50 @@
   <%= @train.number %>
 </p>
 
+<p>
+  <strong> Route: </strong>
+  <% if @train.route.present? %>
+    <%= @train.route.name %>
+  <% else %>
+    not assigned
+  <% end %>
+</p>
+
+<p>
+  <strong> Wagons: </strong>
+  <% unless @train.wagons.any? %>
+    there are no wagons and seats!
+  <% else %>
+    First class wagons:
+    <% @first_class_wagons = @train.wagons_by_type(:first_class) %>
+    <% if @first_class_wagons.any? %>
+      <%= @first_class_wagons.size %>
+    <% else %>
+    0
+    <% end %>
+    Econom class wagons:
+    <% @econom_class_wagons = @train.wagons_by_type(:econom_class) %>
+    <% if @econom_class_wagons.any? %>
+      <%= @econom_class_wagons.size %>
+    <% else %>
+    0
+    <% end %>
+
+    <p>
+      <strong> Seats: </strong>
+      <p>First class:</p>
+      top seats:
+      <%= @train.total_seats_number_by_wagon_type_and_seat_type(:first_class, :top_seats) %>
+      bottom seats:
+      <%= @train.total_seats_number_by_wagon_type_and_seat_type(:first_class, :bottom_seats) %>
+      <p>Econom class:</p>
+      top seats:
+      <%= @train.total_seats_number_by_wagon_type_and_seat_type(:econom_class, :top_seats) %>
+      bottom seats:
+      <%= @train.total_seats_number_by_wagon_type_and_seat_type(:econom_class, :bottom_seats) %>
+    </p>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>
