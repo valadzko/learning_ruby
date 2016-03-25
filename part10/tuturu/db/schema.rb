@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227134758) do
+ActiveRecord::Schema.define(version: 20160325100306) do
 
   create_table "railway_station_routes", force: :cascade do |t|
     t.integer  "route_id"
     t.integer  "railway_station_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "station_index_in_route"
   end
 
   add_index "railway_station_routes", ["railway_station_id"], name: "index_railway_station_routes_on_railway_station_id"
