@@ -22,6 +22,8 @@
     <% @route.railway_stations.each do |st| %>
     <ul>
       <%= st.title %>
+      , number in route : 
+      <%= st.index_in_route(@route) %>
     </ul>
     <% end %>
   <% else %>

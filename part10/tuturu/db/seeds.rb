@@ -10,6 +10,7 @@ rs4 = RailwayStation.new(title: "Paris Station") # mmm
 # routes
 r1 = Route.new(name: "Gomel-Bobruisk-Minsk")
 r2 = Route.new(name: "Minsk-Paris")
+
 # users
 user1 = User.new(username: "Tom") # (Gomel - Minsk), (Minsk - Paris)
 user2 = User.new(username: "Jerry") # (Gomel - Minsk)
@@ -61,3 +62,11 @@ ticket1.save!
 ticket2.save!
 ticket3.save!
 ticket4.save!
+
+#set station indexes in routes
+rs1.set_index_in_route(1,r1)
+rs3.set_index_in_route(2,r1)
+rs2.set_index_in_route(3,r1)
+
+rs2.set_index_in_route(1,r2)
+rs4.set_index_in_route(2,r2)
