@@ -17,12 +17,12 @@
 </p>
 
 <p>
-  <strong> Route stations: </strong>
+  <strong> Sorted route stations: </strong>
   <% unless @route.railway_stations.empty? %>
-    <% @route.railway_stations.each do |st| %>
+    <% @route.sorted_stations.each do |st| %>
     <ul>
       <%= st.title %>
-      , number in route : 
+      , index in route :
       <%= st.index_in_route(@route) %>
     </ul>
     <% end %>

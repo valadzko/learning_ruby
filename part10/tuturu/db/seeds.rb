@@ -65,7 +65,7 @@ ticket4.save!
 
 #set station indexes in routes
 rs1.set_index_in_route(1,r1)
-rs3.set_index_in_route(2,r1)
+rs3.set_index_in_route(5,r1)
 rs2.set_index_in_route(3,r1)
 
 rs2.set_index_in_route(1,r2)
