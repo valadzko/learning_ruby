@@ -3,10 +3,10 @@ tr1 = Train.new(number: "123")
 tr2 = Train.new(number: "356")
 tr3 = Train.new(number: "228")
 # railway stations
-rs1 = RailwayStation.new(title: "Gomel Station")
-rs2 = RailwayStation.new(title: "Minsk Station")
-rs3 = RailwayStation.new(title: "Bobruisk Station")
-rs4 = RailwayStation.new(title: "Paris Station") # mmm
+rs1 = RailwayStation.new(title: "Gomel")
+rs2 = RailwayStation.new(title: "Minsk")
+rs3 = RailwayStation.new(title: "Bobruisk")
+rs4 = RailwayStation.new(title: "Paris") # mmm
 # routes
 r1 = Route.new(name: "Gomel-Bobruisk-Minsk")
 r2 = Route.new(name: "Minsk-Paris")

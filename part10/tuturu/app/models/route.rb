@@ -17,4 +17,5 @@ class Route < ActiveRecord::Base
       station.set_index_in_route(new_index, self)
     end
   end
+
 end
