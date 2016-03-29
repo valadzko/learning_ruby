@@ -17,12 +17,28 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
+  <p>
+    <strong> Railway stations order: </strong>
+    <% unless @route.railway_stations.empty? %>
+      <% @route.sorted_stations.each do |st| %>
+      <ul>
+        <%= st.title %>,
+        <div class="field">
+          <%= f.label "index in route - " %>
+          <%= f.number_field "stations_order[#{st.id}]" , value: st.index_in_route(@route) , min: 0, max: 50 %>
+        </div>
+      </ul>
+      <% end %>
+    <% else %>
+      No stations yet!
+    <% end %>
+  </p>
+
   <div class="actions">
     <%= f.submit 'Edit' %>
   </div>
 <% end %>
-
-
 
 <%= link_to 'Show', @route %> |
 <%= link_to 'Back', routes_path %>
