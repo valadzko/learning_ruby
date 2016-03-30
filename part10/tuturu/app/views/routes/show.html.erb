@@ -19,7 +19,7 @@
 <p>
   <strong> Sorted route stations: </strong>
   <% unless @route.railway_stations.empty? %>
-    <% @route.sorted_stations.each do |st| %>
+    <% @route.railway_stations.each do |st| %>
     <ul>
       <%= st.title %>
       , index in route :
