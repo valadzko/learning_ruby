@@ -71,9 +71,8 @@ ActiveRecord::Schema.define(version: 20160325100306) do
     t.integer  "bottom_seats"
     t.integer  "side_top_seats"
     t.integer  "side_bottom_seats"
-    t.integer  "reqular_seats"
+    t.integer  "regular_seats"
     t.integer  "number"
-    t.string   "class_type"
     t.string   "type"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false

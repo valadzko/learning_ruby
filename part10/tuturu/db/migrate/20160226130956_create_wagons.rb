@@ -5,9 +5,8 @@ class CreateWagons < ActiveRecord::Migration
       t.integer :bottom_seats
       t.integer :side_top_seats
       t.integer :side_bottom_seats
-      t.integer :reqular_seats
+      t.integer :regular_seats
       t.integer :number
-      t.string :class_type
       t.string :type
 
       t.timestamps null: false
