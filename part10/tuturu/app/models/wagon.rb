@@ -5,6 +5,9 @@ class Wagon < ActiveRecord::Base
 
   before_validation :define_wagon_number
 
+  scope :asc, -> { order('number ASC') }
+  scope :desc, -> { order('number DESC') }
+
   private
 
   def define_wagon_number

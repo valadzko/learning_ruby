@@ -19,7 +19,7 @@
   <% unless @train.wagons.any? %>
     there are no wagons and seats!
   <% else %>
-    <% @train.wagons.each do |wagon| %>
+    <% @wagons.each do |wagon| %>
       <ul>
         <%= link_to "#{wagon.number} #{wagon.class}", wagon %>
       </ul>
