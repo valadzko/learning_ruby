@@ -9,6 +9,7 @@
   <strong> Train: </strong>
   <% if @wagon.train.present? %>
     <%= @wagon.train.number %>
+    <%= render "#{@wagon.class.to_s.underscore}", :wagon => @wagon %>
   <% else %>
     Oops, the wagon without a train!
   <% end %>
