@@ -16,5 +16,21 @@
   <% end %>
 </p>
 
+<p>
+  <strong> Sorted route stations: </strong>
+  <% unless @route.railway_stations.empty? %>
+    <% @route.railway_stations.each do |st| %>
+    <ul>
+      <%= st.title %>
+      , index in route :
+      <%= st.index_in_route(@route) %>
+    </ul>
+    <% end %>
+  <% else %>
+    No stations yet!
+  <% end %>
+</p>
+
+
 <%= link_to 'Edit', edit_route_path(@route) %> |
 <%= link_to 'Back', routes_path %>

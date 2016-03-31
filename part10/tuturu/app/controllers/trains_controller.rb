@@ -65,10 +65,11 @@ class TrainsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_train
       @train = Train.find(params[:id])
+      @wagons = @train.wagons_desc_order == '1' ? @train.wagons.desc : @train.wagons.asc
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def train_params
-      params.require(:train).permit(:number, :route_id)
+      params.require(:train).permit(:number, :route_id, :wagons_desc_order)
     end
 end

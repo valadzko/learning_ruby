@@ -1,6 +1,6 @@
 <h1>New Wagon</h1>
 
-<%= form_for(@wagon) do |f| %>
+<%= form_for(@wagon, :as => :wagon) do |f| %>
   <% if @wagon.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@wagon.errors.count, "error") %> prohibited this wagon from being saved:</h2>
@@ -14,24 +14,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :class_type %><br>
-    <%= f.text_field :class_type %>
-  </div>
-
-  <div class="field">
     <%= f.label :train, "Train number:" %><br>
     <%= f.collection_select :train_id, Train.all, :id, :number %>
   </div>
 
-  <div class="field">
-    <%= f.label "Top seats number" %><br>
-    <%= f.number_field 'top_seats', min: 0, max: 50 %>
-  </div>
-
-  <div class="field">
-    <%= f.label "Bottom seats number" %><br>
-    <%= f.number_field 'bottom_seats' , min: 0, max: 50%>
-  </div>
 
   <div class="actions">
     <%= f.submit %>

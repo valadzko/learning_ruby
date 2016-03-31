@@ -21,6 +21,11 @@
     <%= f.collection_select :route_id, Route.all, :id, :name %>
   </div>
 
+  <div class="field">
+    <%= f.label :wagons_desc_order, "Reversed order" %> <br>
+    <%= f.check_box :wagons_desc_order %> <br>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
