@@ -26,7 +26,7 @@ class RoutesController < ApplicationController
   end
 
   def update
-    if @route.update(route_params) && @route.update_stations_order(params[:route][:stations_order])
+    if @route.update(route_params) && @route.update_times(params[:arrival_time], params[:departure_time]) && @route.update_stations_order(params[:route][:stations_order])
       redirect_to @route
     else
       render :new
@@ -45,7 +45,7 @@ class RoutesController < ApplicationController
   end
 
   def route_params
-    params.require(:route).permit(:name, :stations_order)
+    params.require(:route).permit(:name, stations_order: [])
   end
 
 end

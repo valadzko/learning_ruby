@@ -19,20 +19,32 @@
   </div>
 
   <p>
-    <strong> Railway stations order: </strong>
+    <strong> Manage route: </strong>
     <% unless @route.railway_stations.empty? %>
+    <table border="1">
+      <tr>
+        <td>Station Name</td>
+        <td>Route Index</td>
+        <td>Arrival Time</td>
+        <td>Departure Time</td>
+      </tr>
       <% @route.railway_stations.each do |st| %>
-      <ul>
-        <%= st.title %>,
-        <div class="field">
-          <%= f.label "index in route - " %>
-          <%= f.number_field "stations_order[#{st.id}]" , value: st.index_in_route(@route) , min: 0, max: 50 %>
-        </div>
-      </ul>
+        <tr>
+          <td><%= st.title %></td>
+          <td>
+            <div class="field">
+              <%= f.number_field "stations_order[#{st.id}]" , value: st.index_in_route(@route) , min: 0, max: 50 %>
+            </div>
+          </td>
+          <td> <%=datetime_select("arrival_time[#{st.id}]", 'date', default: st.arrival_time(@route))%> </td>
+          <td> <%=datetime_select("departure_time[#{st.id}]", 'date', default: st.departure_time(@route))%> </td>
+        </tr>
       <% end %>
+    </table>
     <% else %>
       No stations yet!
     <% end %>
+
   </p>
 
   <div class="actions">
