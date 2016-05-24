@@ -21,18 +21,6 @@ class WagonsController < ApplicationController
 
   def create
     @train = Train.find(params[:train_id])
-    if params[:wagontype] do
-      case params[:wagontype]
-      when "sitting"
-        
-      when "luxury"
-        create
-      when "economy"
-        create
-      when "coupe"
-        create
-      end
-    end
     @wagon = @train.wagons.new(wagon_params)
 
     if @wagon.save
@@ -61,7 +49,7 @@ class WagonsController < ApplicationController
   end
 
   def wagon_params
-    params.require(:wagon).permit(:train_id, :top_seats, :bottom_seats, :side_top_seats, :side_bottom_seats, :regular_seats, :wagontype)
+    params.require(:wagon).permit(:train_id, :top_seats, :bottom_seats, :side_top_seats, :side_bottom_seats, :regular_seats)
   end
 
 end

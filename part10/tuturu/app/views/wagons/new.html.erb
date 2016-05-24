@@ -10,20 +10,16 @@ function ShowRightSeatsForWagonType(val){
     document.getElementById('side_bottom_seats').style.display='none';
     document.getElementById('wagon_regular_seats').style.display='none';
     if(val=='coupe'){
-      document.getElementById('wagontype').value='coupe';
       document.getElementById('top_seats').style.display='block';
       document.getElementById('bottom_seats').style.display='block';
     } else if (val=='economy') {
-      document.getElementById('wagontype').value='economy';
       document.getElementById('top_seats').style.display='block';
       document.getElementById('bottom_seats').style.display='block';
       document.getElementById('side_top_seats').style.display='block';
       document.getElementById('side_bottom_seats').style.display='block';
     } else if (val=='luxury') {
-      document.getElementById('wagontype').value='luxury';
       document.getElementById('bottom_seats').style.display='block';
     } else if (val=='sitting') {
-      document.getElementById('wagontype').value='sitting';
       document.getElementById('regular_seat').style.display='block';
     } else {
       document.getElementById('create_wagon_btn').style.display='none';
@@ -58,7 +54,6 @@ function ShowRightSeatsForWagonType(val){
       <option value="luxury">Luxury</option>
       <option value="sitting">Sitting</option>
     </select>
-    <%= hidden_field_tag :wagontype, 'coupe'%>
   </div>
 
   <div class="field" id="regular_seat" style="display: none;">
