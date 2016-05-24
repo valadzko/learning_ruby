@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
-  resources :trains
+  resources :trains do
+    resources :wagons
+    resources :coupe_wagons, controller: :wagons
+    resources :sitting_wagons, controller: :wagons
+    resources :economy_wagons, controller: :wagons
+    resources :luxury_wagons, controller: :wagons
+  end
   resources :railway_stations
   resources :routes
   resources :tickets
-  resources :wagons
-  resources :coupe_wagons, controller: :wagons
-  resources :sitting_wagons, controller: :wagons
-  resources :economy_wagons, controller: :wagons
-  resources :luxury_wagons, controller: :wagons
+#  resources :wagons
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

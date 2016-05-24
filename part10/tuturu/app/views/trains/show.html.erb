@@ -21,10 +21,14 @@
   <% else %>
     <% @wagons.each do |wagon| %>
       <ul>
-        <%= link_to "#{wagon.number} #{wagon.class}", wagon %>
+        <%= link_to "#{wagon.number} #{wagon.class}", train_wagon_path(@train, wagon) %>
       </ul>
     <% end %>
   <% end %>
+</p>
+
+<p>
+  <%= link_to "Add wagon", new_train_wagon_path(@train) %>
 </p>
 
 <%= link_to 'Edit', edit_train_path(@train) %> |

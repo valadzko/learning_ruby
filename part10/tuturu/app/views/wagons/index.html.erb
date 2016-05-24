@@ -14,14 +14,15 @@
     <% @wagons.each do |wagon| %>
       <tr>
         <td><%= wagon.class %></td>
-        <td><%= link_to 'Show', wagon %></td>
-        <td><%= link_to 'Edit', edit_wagon_path(wagon) %></td>
-        <td><%= link_to 'Destroy', wagon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', train_wagon_path(@train, wagon) %></td>
+        <td><%= link_to 'Edit', edit_train_wagon_path(@train, wagon) %></td>
+        <td><%= link_to 'Destroy', train_wagon_path(@train, wagon), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Wagon', new_wagon_path %>
+<%= link_to 'Back to trains', trains_path %>
+<br>
+<%= link_to 'New Wagon', new_train_wagon_path(@train) %>

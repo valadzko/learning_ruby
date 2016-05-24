@@ -1,6 +1,37 @@
 <h1>New Wagon</h1>
 
-<%= form_for(@wagon, :as => :wagon) do |f| %>
+<script type="text/javascript">
+function ShowRightSeatsForWagonType(val){
+    document.getElementById('create_wagon_btn').style.display='block';
+    document.getElementById('regular_seat').style.display='none';
+    document.getElementById('top_seats').style.display='none';
+    document.getElementById('bottom_seats').style.display='none';
+    document.getElementById('side_top_seats').style.display='none';
+    document.getElementById('side_bottom_seats').style.display='none';
+    document.getElementById('wagon_regular_seats').style.display='none';
+    if(val=='coupe'){
+      document.getElementById('wagontype').value='coupe';
+      document.getElementById('top_seats').style.display='block';
+      document.getElementById('bottom_seats').style.display='block';
+    } else if (val=='economy') {
+      document.getElementById('wagontype').value='economy';
+      document.getElementById('top_seats').style.display='block';
+      document.getElementById('bottom_seats').style.display='block';
+      document.getElementById('side_top_seats').style.display='block';
+      document.getElementById('side_bottom_seats').style.display='block';
+    } else if (val=='luxury') {
+      document.getElementById('wagontype').value='luxury';
+      document.getElementById('bottom_seats').style.display='block';
+    } else if (val=='sitting') {
+      document.getElementById('wagontype').value='sitting';
+      document.getElementById('regular_seat').style.display='block';
+    } else {
+      document.getElementById('create_wagon_btn').style.display='none';
+    }
+  }
+</script>
+
+<%= form_for [@train, @wagon] do |f| %>
   <% if @wagon.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@wagon.errors.count, "error") %> prohibited this wagon from being saved:</h2>
@@ -13,16 +44,52 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :train, "Train number:" %><br>
-    <%= f.collection_select :train_id, Train.all, :id, :number %>
+  <div>
+    Train number:
+    <%= @train.number %>
+  </div>
+  <br>
+  <div>
+    Wagon type:
+    <select class="field" id="wagon_type" onchange='ShowRightSeatsForWagonType(this.value);'>
+      <option>Select type</option>
+      <option value="coupe">Coupe</option>
+      <option value="economy">Economy</option>
+      <option value="luxury">Luxury</option>
+      <option value="sitting">Sitting</option>
+    </select>
+    <%= hidden_field_tag :wagontype, 'coupe'%>
   </div>
 
+  <div class="field" id="regular_seat" style="display: none;">
+    <%= f.label :regular_seats %>
+    <%= f.number_field :regular_seats, min: 0, max: 50 %>
+  </div>
 
-  <div class="actions">
+  <div class="field" id="top_seats" style="display: none;">
+    <%= f.label :top_seats %>
+    <%= f.number_field :top_seats, min: 0, max: 50 %>
+  </div>
+
+  <div class="field" id="bottom_seats" style="display: none;">
+    <%= f.label :bottom_seats %>
+    <%= f.number_field :bottom_seats, min: 0, max: 50 %>
+  </div>
+
+  <div class="field" id="side_top_seats" style="display: none;">
+    <%= f.label :side_top_seats %>
+    <%= f.number_field :side_top_seats, min: 0, max: 50 %>
+  </div>
+
+  <div class="field" id="side_bottom_seats" style="display: none;">
+    <%= f.label :side_bottom_seats %>
+    <%= f.number_field :side_bottom_seats, min: 0, max: 50 %>
+  </div>
+
+  <div class="actions" id="create_wagon_btn" style="display: none;">
     <%= f.submit %>
   </div>
 <% end %>
 
 
-<%= link_to 'Back', wagons_path %>
+<%= link_to 'Back', @train %>

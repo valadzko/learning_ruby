@@ -7,13 +7,9 @@
 
 <p>
   <strong> Train: </strong>
-  <% if @wagon.train.present? %>
     <%= @wagon.train.number %>
     <%= render "#{@wagon.class.to_s.underscore}", :wagon => @wagon %>
-  <% else %>
-    Oops, the wagon without a train!
-  <% end %>
 </p>
 
-<%= link_to 'Edit', edit_wagon_path(@wagon) %> |
-<%= link_to 'Back', wagons_path %>
+<%= link_to 'Edit', edit_train_wagon_path(@train, @wagon) %> |
+<%= link_to 'Back', @train %>
