@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   resources :routes
   resources :tickets
+  resource :search, only: [:new, :show, :edit]
 #  resources :wagons
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -24,7 +24,7 @@
       <%= st.title %>
       , index in route :
       <%= form_tag update_position_railway_station_path(st), method: :patch do %>
-        <%= number_field_tag :position %>
+        <%= number_field_tag :position, st.index_in_route(@route) %>
         <%= hidden_field_tag :route_id, @route.id %>
         <%= submit_tag "Change" %>
       <% end %>
