@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     resources :economy_wagons, controller: :wagons
     resources :luxury_wagons, controller: :wagons
   end
-  resources :railway_stations
+  resources :railway_stations do
+    patch :update_position, on: :member # on: :collection
+  end
   resources :routes
   resources :tickets
 #  resources :wagons

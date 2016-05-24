@@ -1,5 +1,5 @@
 class RailwayStationsController < ApplicationController
-  before_action :set_railway_station, only: [:show, :edit, :update, :destroy]
+  before_action :set_railway_station, only: [:show, :edit, :update, :destroy, :update_position]
 
   # GET /railway_stations
   # GET /railway_stations.json
@@ -19,6 +19,12 @@ class RailwayStationsController < ApplicationController
 
   # GET /railway_stations/1/edit
   def edit
+  end
+
+  def update_position
+    @route = Route.find(params[:route_id])
+    @railway_station.set_index_in_route(params[:position], @route)
+    redirect_to @route
   end
 
   # POST /railway_stations
